@@ -1,5 +1,7 @@
 # Browser Multimodal Retrieval Demo
 
+**Live demo:** https://albertoreyescastro.github.io/public-multimodal-retrieval-demo/
+
 An independent, browser-based image retrieval demo built from scratch with a standard public CLIP model and public sample data.
 
 Users describe an image in natural language, the browser encodes the text and gallery images into the same embedding space, and the gallery is ranked by cosine similarity. Inference runs locally in the browser through Transformers.js / ONNX Runtime Web; there is no application backend.
