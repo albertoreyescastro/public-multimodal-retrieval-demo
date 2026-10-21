@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Independent browser-based multimodal retrieval demo using CLIP embeddings and cosine similarity."
+    />
+    <title>Browser Multimodal Retrieval Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Independent portfolio demo</p>
+          <h1>Multimodal image retrieval, entirely in your browser.</h1>
+          <p class="hero-copy">
+            A small CLIP-based retrieval system built from scratch with public sample data. Image and text
+            embeddings are computed locally in the browser and ranked with cosine similarity.
+          </p>
+        </div>
+        <div class="hero-badges" aria-label="Demo characteristics">
+          <span>CLIP</span>
+          <span>ONNX / Transformers.js</span>
+          <span>Client-side inference</span>
+          <span>No backend</span>
+        </div>
+      </section>
+
+      <section class="panel controls" aria-labelledby="search-heading">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">Semantic search</p>
+            <h2 id="search-heading">Describe what you want to find</h2>
+          </div>
+          <div class="runtime-state">
+            <span class="status-dot" id="status-dot" aria-hidden="true"></span>
+            <span id="runtime-label">Model not loaded</span>
+          </div>
+        </div>
+
+        <form id="search-form" class="search-row">
+          <label class="sr-only" for="query">Text query</label>
+          <input
+            id="query"
+            name="query"
+            type="search"
+            autocomplete="off"
+            value="a tiger in the wild"
+            placeholder="e.g. people playing football"
+          />
+          <button id="search-button" type="submit">Search</button>
+        </form>
+
+        <div class="query-chips" aria-label="Example queries">
+          <button type="button" data-query="a tiger in the wild">Tiger</button>
+          <button type="button" data-query="people playing football">Football</button>
+          <button type="button" data-query="two cats indoors">Cats</button>
+          <button type="button" data-query="an astronaut in space">Astronaut</button>
+          <button type="button" data-query="a butterfly">Butterfly</button>
+          <button type="button" data-query="a portrait of a woman">Portrait</button>
+        </div>
+
+        <div class="status-box" id="status-box" role="status" aria-live="polite">
+          <div class="status-line">
+            <span id="status-text">The model will download only when you initialise or run your first search.</span>
+            <span id="status-metric"></span>
+          </div>
+          <progress id="progress" max="100" value="0"></progress>
+        </div>
+
+        <div class="action-row">
+          <button id="initialise-button" class="secondary" type="button">Initialise model</button>
+          <label class="upload-button" for="image-upload">Add your own images</label>
+          <input id="image-upload" type="file" accept="image/*" multiple />
+          <button id="reset-button" class="text-button" type="button" disabled>Remove uploads</button>
+        </div>
+
+        <p class="privacy-note">
+          Uploaded images stay in this browser session. They are not sent to an application server.
+        </p>
+      </section>
+
+      <section class="results-section" aria-labelledby="results-heading">
+        <div class="results-header">
+          <div>
+            <p class="section-kicker">Gallery</p>
+            <h2 id="results-heading">Retrieval results</h2>
+          </div>
+          <div id="latency-card" class="latency-card" hidden>
+            <span>Query encode + ranking</span>
+            <strong id="latency-value">—</strong>
+          </div>
+        </div>
+        <div id="results" class="results-grid"></div>
+      </section>
+
+      <section class="panel architecture" aria-labelledby="architecture-heading">
+        <p class="section-kicker">How it works</p>
+        <h2 id="architecture-heading">A deliberately generic retrieval pipeline</h2>
+        <div class="flow" aria-label="High level retrieval pipeline">
+          <div class="flow-card">
+            <span>1</span>
+            <strong>Images</strong>
+            <small>Public samples or local uploads</small>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-card">
+            <span>2</span>
+            <strong>Vision encoder</strong>
+            <small>CLIP image embeddings</small>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-card">
+            <span>3</span>
+            <strong>In-memory index</strong>
+            <small>Normalised vectors for this session</small>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-card">
+            <span>4</span>
+            <strong>Text query</strong>
+            <small>CLIP text embedding + cosine ranking</small>
+          </div>
+        </div>
+        <p class="boundary-note">
+          This demo is an independent implementation using a standard public CLIP model. It contains no
+          TeachScribe source code, assets, UI, data, or private implementation details.
+        </p>
+      </section>
+    </main>
+
+    <template id="result-card-template">
+      <article class="result-card">
+        <div class="image-wrap">
+          <img alt="" loading="lazy" />
+          <span class="rank-badge"></span>
+        </div>
+        <div class="card-copy">
+          <div>
+            <h3></h3>
+            <p class="source-label"></p>
+          </div>
+          <div class="score-block" hidden>
+            <span>cosine</span>
+            <strong class="score-value"></strong>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
