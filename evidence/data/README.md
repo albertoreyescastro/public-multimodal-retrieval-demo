@@ -2,6 +2,16 @@
 
 These files are copied from the audited private engineering repository without changing the numeric observations. They contain aggregate or de-identified engineering evidence only: no classroom photos, media identifiers, filenames, exact capture dates, personal paths, credentials or linked per-query records are included.
 
+## Verify the headline statistics
+
+From the repository root:
+
+```bash
+python evidence/verify_stats.py
+```
+
+The verifier uses only the Python standard library and recomputes the sustained-search median/P95/drift, text-model size reduction, descriptive FP32/INT8 retrieval totals, Wilson confidence intervals and exact McNemar tests from the committed evidence. The verifier is new public portfolio tooling and contains no TeachScribe application implementation.
+
 ## Evidence stages
 
 Do not combine the following into a single accuracy or performance claim:
@@ -9,7 +19,7 @@ Do not combine the following into a single accuracy or performance claim:
 1. **Desktop model selection** — five pretrained vision-language models on a small curated Hard set; the two leading candidates were also compared on Expanded and New Images sets.
 2. **Historical Android benchmark** — physical Huawei MediaPad M3 Lite 8 (CPN-W09), Android 7 / ARM64; latency, startup, memory, thermal and battery-side measurements from the benchmark build.
 3. **Functional acceptance** — temporal filtering, persistence and later on-device behaviour checks.
-4. **Post-delivery review** — FP32/INT8 retrieval comparison and behaviour-equivalence checks of the refactored private implementation.
+4. **Post-delivery review** — FP32/INT8 retrieval comparison, behaviour-equivalence checks and later fail-closed invalid-embedding guards in the audited private edition.
 
 ## Files
 

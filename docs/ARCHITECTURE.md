@@ -1,6 +1,6 @@
 # Architecture
 
-This public case study describes the production retrieval architecture without publishing TeachScribe's proprietary application source code.
+This public case study describes the **deployed retrieval architecture plus clearly marked post-delivery hardening** without publishing TeachScribe's proprietary application source code.
 
 The system combines a React Native/Expo interface, local media enumeration, a CLIP-compatible tokenizer, separate text and image ONNX encoders, native Android image preprocessing, a persistent embedding cache and explicit human review. Inference and ranking run on the device. Accepting a result does not train or update the pretrained model, and this retrieval path contains no face-recognition or identity-matching stage.
 
@@ -38,7 +38,7 @@ The Android preprocessing path performs bounded decoding, crop-preserving downsa
 
 Cache identity combines a model/cache version with media metadata. It is intentionally not presented as a content hash: edits that preserve every key field can evade invalidation, and model or preprocessing changes require a cache-version decision.
 
-RAM coalesces repeated work. Missing valid vectors are hydrated from SQLite; invalid dimensions, byte counts, non-finite values or invalid norms are rejected. Fresh invalid embeddings are rejected before caching. Successful gallery refreshes prune stale or inaccessible keys. Process restart discards sessions and RAM but preserves valid persisted vectors.
+RAM coalesces repeated work. Missing valid vectors are hydrated from SQLite; persisted rows with invalid dimensions, byte counts, non-finite values or invalid norms are rejected. **In the audited post-delivery edition, fail-closed guards also reject freshly computed non-finite or wrong-dimension embeddings before caching/ranking; the deployed snapshot predates these guards.** Valid finite 512-dimensional embeddings continue through the previous path unchanged. Successful gallery refreshes prune stale or inaccessible keys. Process restart discards sessions and RAM but preserves valid persisted vectors.
 
 ## Durable state
 
@@ -57,4 +57,4 @@ The reported search timer ends before final rendering and before diagnostic/hist
 
 ## Public/private boundary
 
-This document intentionally preserves the engineering contracts, architecture and trade-offs while omitting source-file names, implementation bodies, proprietary UI code, native-module source, tests and build scripts. See [`PUBLICATION_BOUNDARY.md`](PUBLICATION_BOUNDARY.md).
+This document intentionally preserves the engineering contracts, architecture and trade-offs while omitting source-file names, implementation bodies, proprietary UI code, native-module source, implementation tests and build scripts. The full private engineering repository is available to hiring teams on request, with TeachScribe's permission. See [`PUBLICATION_BOUNDARY.md`](PUBLICATION_BOUNDARY.md).
