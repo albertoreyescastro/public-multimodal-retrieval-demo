@@ -1,0 +1,19 @@
+{
+  "evidence": "Historical engineering measurements from the benchmark build; not re-measured after the refactor",
+  "power_w": {"Idle": 1.90547, "Sustained search": 2.70922, "Recovery": 1.73242},
+  "energy_mwh": {"Idle": 46.58, "Sustained search": 179.86, "Recovery": 42.83},
+  "thermal_ranges_c": {"Idle": [33,33], "Sustained search": [34,37], "Recovery": [34,39]},
+  "longer_run_max_soc_c": 41,
+  "preprocessing_ms": {"Earlier reference": 2199.73, "Case A": 502.42, "Case B": 366.17, "Case C": 457.46, "Case D": 492.50},
+  "preprocessing_note": "Different photographs; not paired A/B observations",
+  "apk_mib": {"Universal release": 397.68, "ARM64 FP32": 216.97, "Earlier clean INT8": 143.84, "Benchmark build": 169.25, "Later private closure": 143.01},
+  "apk_note": "Benchmark build had a duplicate text-model resource; later closure removed it. A release build of the refactored code was installed only for the functional A/B; its size was not re-measured.",
+  "memory_mib": {"Idle": [76.26,10.49], "After warm searches": [235.01,75.00], "After new image": [271.13,96.06]},
+  "memory_columns": ["Process PSS", "Native Heap PSS"],
+  "preload_idle_pss_mib": {"Lazy loading": 76.3, "Preload experiment": 166.6},
+  "scheduler_ms": {"Original": [530.92,260.60], "Every 20": [379.42,110.00], "About 50 (rejected)": [303.55,43.68]},
+  "scheduler_columns": ["Total", "Ranking (nested)"],
+  "text_model_bytes": {"FP32": 178520196, "INT8": 45042123},
+  "new_image_ms": {"total":4225.41,"text_session":217.40,"text_inference":228.75,"text_encoding":452.32,"index_loading":214.43,"cold_image_model":1527.81,"ranking":2027.31,"image_read":208.34,"preprocessing":492.50,"image_inference":726.81,"persistence":8.89,"ui_yield":372.78},
+  "new_image_note": "One cold case, 44 candidates, 43 cached, one new embedding. Nested timings are not additive."
+}

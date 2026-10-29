@@ -1,101 +1,74 @@
-# Browser Multimodal Retrieval Demo
+<p align="center">
+  <img src="docs/readme/hero.svg" width="100%" alt="TeachScribe — on-device multimodal photo retrieval. Applied AI engineering by Alberto Reyes Castro." />
+</p>
 
-**Live demo:** https://albertoreyescastro.github.io/public-multimodal-retrieval-demo/
+<p align="center"><strong>Production pipeline · Shipped within TeachScribe's 50+ UK-school deployment · DfE AI Tools for Education programme</strong></p>
 
-An independent, browser-based image retrieval demo built from scratch with a standard public CLIP model and public sample data.
+<p align="center">
+  <a href="https://github.com/user-attachments/files/34106097/TeachScribe_On_Device_Multimodal_Retrieval_Public_Engineering_Case_Study.pdf"><img src="docs/readme/button-report.svg" height="42" alt="Engineering report" /></a>&nbsp;
+  <a href="https://albertoreyescastro.github.io"><img src="docs/readme/button-portfolio.svg" height="42" alt="Portfolio" /></a>&nbsp;
+  <a href="https://www.linkedin.com/in/alberto-reyes-ba5546238"><img src="docs/readme/button-linkedin.svg" height="42" alt="LinkedIn" /></a>
+</p>
 
-Users describe an image in natural language, the browser encodes the text and gallery images into the same embedding space, and the gallery is ranked by cosine similarity. Inference runs locally in the browser through Transformers.js / ONNX Runtime Web; there is no application backend.
+# TeachScribe — On-Device Multimodal Photo Retrieval
 
-> **Boundary:** this repository contains no TeachScribe source code, assets, UI, data, private architecture, or implementation details. It is a deliberately generic portfolio demonstration using public tooling and data.
+**Applied AI engineering case study · Alberto Reyes Castro**
 
-## What this demonstrates
+This public portfolio repository documents the architecture, measured results, validation outcomes and de-identified evidence behind an on-device photo-retrieval feature built for TeachScribe. The proprietary application source code is intentionally not published.
 
-- multimodal text-to-image retrieval with a shared embedding space;
-- client-side ML inference with a web-ready ONNX model;
-- separate image and text encoders;
-- normalised embeddings and cosine-similarity ranking;
-- in-memory gallery indexing;
-- browser-side latency measurement;
-- local image uploads that remain in the browser session;
-- a static deployment surface with no server-side application code.
+## Technical deep dive
 
-## High-level flow
+https://github.com/user-attachments/assets/686275ae-5e92-4469-83d3-fb213f77ac7a
 
-```text
-public sample images / local uploads
-              |
-              v
-       CLIP vision encoder
-              |
-              v
-   normalised image embeddings
-              |
-              +-------------------------+
-                                        |
-text query -> CLIP text encoder -> normalised text embedding
-                                        |
-                                        v
-                              cosine similarity
-                                        |
-                                        v
-                                  ranked gallery
-```
+**98-second narrated walkthrough** — on-device multimodal retrieval, model selection, INT8 deployment, Android optimisation, measured performance and validation.
 
-The sample implementation uses `Xenova/clip-vit-base-patch32` with Transformers.js. The first run downloads the public model from Hugging Face; subsequent runs can use the browser cache.
+## Problem
 
-## Why this is intentionally separate from proprietary work
+Early Years observations can be associated with many photos captured around the same period. The feature uses the observation text plus an optional local date/window filter to rank relevant photos directly on the Android tablet, then leaves the final choice to the teacher.
 
-This demo is not a source release or reimplementation of a commercial product. It intentionally avoids product-specific code and architecture. In particular, it does **not** include TeachScribe's application code, mobile integration, persistent embedding storage, internal scheduling/caching logic, private model packaging, production data, branding, or UI.
+The retrieval path is fully local: text and images are encoded on-device, image embeddings are reused from a persistent cache, and the ranked Top-5 remains a human-reviewed suggestion rather than an automated decision.
 
-The purpose is narrower: provide a directly inspectable example of the underlying public ML concept while keeping commercial implementation details private.
+## Production context
 
-## Run locally
+The pipeline has been integrated into TeachScribe and shipped within its deployment to **50+ UK schools**. That number is deployment reach, not measured adoption of this specific feature. The quantitative results below come from controlled engineering evaluation rather than production telemetry.
 
-Because the page imports an ES module and downloads model assets, serve the directory over HTTP rather than opening `index.html` directly from disk.
+## Engineering contribution
 
-```bash
-python -m http.server 8000
-```
+- compared **5 pretrained vision-language models** and selected TinyCLIP 39M/16;
+- deployed separate INT8 text/image ONNX encoders on constrained Android hardware;
+- implemented native image preprocessing and persistent embedding reuse;
+- measured and tuned scheduling, preprocessing, memory, startup, thermal and battery-side behaviour;
+- preserved explicit human review and independent search-history records;
+- validated the later refactor with 33 Node tests, 15 Python tests and an on-device A/B comparison.
 
-Then open `http://localhost:8000` in a modern browser.
+## Results
 
-No package install or build step is required.
+| Result | Scope |
+| :-- | :-- |
+| **441.07 ms median / 459.28 ms P95** | 108 consecutive cached searches over 44 photos |
+| **1.82% drift** | first 20 vs last 20 medians in that sequence |
+| **74.77% smaller text encoder** | 178,520,196 to 45,042,123 bytes after INT8 quantisation |
+| **97/110 same top-1 image** | INT8 vs FP32 descriptive total across three related sets |
+| **76.3 MiB idle PSS** | lazy image session; 166.6 MiB preload variant rejected |
+| **17/20 Hit@1** | TinyCLIP 39M/16 on the curated Hard set; 95% Wilson CI 64–95% |
 
-## Use the demo
+![108 cached searches](docs/figures/sustained_latency.svg)
 
-1. Click **Initialise model**, or submit a query to initialise automatically.
-2. Wait for the CLIP text and vision encoders to download and for the public sample gallery to be indexed.
-3. Search with a natural-language description such as `people playing football` or `an astronaut in space`.
-4. Inspect the ranked gallery and cosine-similarity scores.
-5. Optionally add local images. They are processed in the current browser session and are not uploaded to an application server.
+## Architecture
 
-The first model load can take time because the ONNX weights are downloaded in the browser. Query-time ranking is measured separately after the image gallery has been indexed.
+![Local retrieval architecture](docs/figures/architecture.svg)
 
-## Implementation notes
+The architecture uses separate text and image encoders, native Android preprocessing, persistent image-vector reuse, cosine ranking and explicit human review. Detailed contracts and cache behaviour are retained in [Architecture](docs/ARCHITECTURE.md).
 
-The app uses two public CLIP projection models: a vision encoder for gallery items and a text encoder for queries. Image vectors are computed once per browser session and stored only in memory. Each query produces one text vector, which is compared against the current image vectors with cosine similarity.
+## Inspect the evidence
 
-This separation makes the demo easy to reason about and keeps the retrieval path explicit without reproducing any private production system.
+The repository publishes aggregate numeric evidence rather than only screenshots or headline claims. See [Evidence data](evidence/data/README.md), [Validation](docs/VALIDATION.md), [Limitations](docs/LIMITATIONS.md), [Privacy](docs/PRIVACY.md) and the [Publication boundary](docs/PUBLICATION_BOUNDARY.md).
 
-## Sample data
+## Rights
 
-The default gallery loads example images from the Hugging Face `Xenova/transformers.js-docs` dataset used in Transformers.js documentation. Those images are not redistributed in this repository and remain subject to their respective source/licensing terms.
+This is an engineering case study rather than an open-source application release. See [Rights and attribution notice](NOTICE.md) and [Third-party notices](THIRD_PARTY_NOTICES.md).
 
-## Technology
+---
 
-- JavaScript / ES modules
-- Transformers.js 3.8.1
-- ONNX Runtime Web through Transformers.js
-- CLIP ViT-B/32 (`Xenova/clip-vit-base-patch32`)
-- HTML + CSS
-- browser-native File API and Performance API
-
-## Deployment
-
-The project is intentionally static and can be served by GitHub Pages or any ordinary static host. No GitHub Actions workflow is required for the demo itself.
-
-## Scope and limitations
-
-This is a compact portfolio demo, not a production retrieval service. It uses a small public gallery, keeps embeddings only in memory, depends on the user's browser/device for inference performance, and does not claim production-scale latency, quality, memory, energy, or deployment results.
-
-The cosine scores are model similarities within this demo; they are not calibrated probabilities.
+**Alberto Reyes Castro · Applied AI Engineer · London, UK**  
+[Portfolio](https://albertoreyescastro.github.io) · [GitHub](https://github.com/albertoreyescastro) · [LinkedIn](https://www.linkedin.com/in/alberto-reyes-ba5546238)

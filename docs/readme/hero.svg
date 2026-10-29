@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="392" viewBox="0 0 1200 392" role="img" aria-labelledby="title desc">
+<title id="title">TeachScribe — on-device multimodal photo retrieval</title>
+<desc id="desc">Applied AI engineering by Alberto Reyes Castro: model evaluation, efficient mobile inference and reliable human review.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#07111f"/><stop offset="0.55" stop-color="#0b1726"/><stop offset="1" stop-color="#0a1d20"/></linearGradient>
+<linearGradient id="accent"><stop stop-color="#68e0cf"/><stop offset="1" stop-color="#9cc5ff"/></linearGradient>
+<pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#fff" stroke-opacity=".045"/></pattern>
+</defs>
+<rect width="1200" height="392" rx="28" fill="url(#bg)"/>
+<rect width="1200" height="392" rx="28" fill="url(#grid)"/>
+<rect x="1" y="1" width="1198" height="390" rx="27" fill="none" stroke="#fff" stroke-opacity=".09"/>
+<g font-family="Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif">
+<text x="64" y="52" fill="#8fa7bf" font-family="ui-monospace, monospace" font-size="15" letter-spacing="2">ALBERTO REYES CASTRO / APPLIED AI ENGINEERING</text>
+<g transform="translate(64 79) scale(0.4125) translate(-320 -220)"><g transform="translate(250 200)"><path fill="#3B82F6" d="M230 100A80 80 0 0 1 150 180A80 80 0 0 1 70 100A80 80 0 0 1 230 100z"/><path d="M150 40c33 0 60 27 60 60s-27 60 -60 60" fill="none" stroke="#FFFFFF" stroke-width="8"/><path fill="#FFFFFF" d="M135 100A15 15 0 0 1 120 115A15 15 0 0 1 105 100A15 15 0 0 1 135 100z"/></g></g>
+<text x="148" y="137" fill="#f5f8fb" font-family="Georgia, Times New Roman, serif" font-size="70" font-weight="700">TeachScribe</text>
+<text x="64" y="181" fill="#bed0df" font-size="25">Natural-language photo retrieval, on the device.</text>
+<rect x="64" y="210" width="1072" height="2" rx="1" fill="url(#accent)" opacity=".85"/>
+<text x="64" y="259" fill="#68e0cf" font-size="24" font-weight="600">Evaluate</text>
+<text x="64" y="291" fill="#d9e4ec" font-size="18">Five pretrained models</text>
+<text x="445" y="259" fill="#9cc5ff" font-size="24" font-weight="600">Deploy</text>
+<text x="445" y="291" fill="#d9e4ec" font-size="18">INT8 · ONNX · Kotlin · SQLite</text>
+<text x="844" y="259" fill="#a7f3d0" font-size="24" font-weight="600">Verify</text>
+<text x="844" y="291" fill="#d9e4ec" font-size="18">Measured device behaviour</text>
+<text x="64" y="353" fill="#8099ad" font-family="ui-monospace, monospace" font-size="14">MULTIMODAL ML · EFFICIENT INFERENCE · HUMAN REVIEW</text>
+</g></svg>

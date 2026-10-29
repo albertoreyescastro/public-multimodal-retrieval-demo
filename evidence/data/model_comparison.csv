@@ -1,0 +1,6 @@
+model,parameters,hit1_percent,hit5_percent,images16_seconds,image_mean_seconds,text_mean_seconds
+MobileCLIP-S0,53792065,75,95,0.736,0.046,0.018
+TinyCLIP 8M/16,23446017,35,80,0.503,0.031,0.008
+TinyCLIP 40M/32,84205569,65,90,0.543,0.034,0.016
+SigLIP Base,203155970,70,95,3.420,0.214,0.102
+TinyCLIP 39M/16,83101185,85,90,1.544,0.097,0.022
