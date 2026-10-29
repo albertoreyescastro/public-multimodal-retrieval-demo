@@ -6,7 +6,17 @@
 
 <p align="center"><strong>Production pipeline · Shipped within TeachScribe's 50+ UK-school deployment · DfE AI Tools for Education programme</strong></p>
 
-[Engineering report (PDF)](docs/TeachScribe_On_Device_Multimodal_Retrieval_Public_Engineering_Case_Study.pdf) · [Architecture](docs/ARCHITECTURE.md) · [Validation](docs/VALIDATION.md) · [Evidence](evidence/data/README.md)
+<p align="center">
+  <a href="https://github.com/user-attachments/files/34106097/TeachScribe_On_Device_Multimodal_Retrieval_Public_Engineering_Case_Study.pdf"><img src="docs/readme/button-report.svg" height="42" alt="Engineering report" /></a>&nbsp;
+  <a href="https://albertoreyescastro.github.io"><img src="docs/readme/button-portfolio-wide.svg" height="42" alt="Portfolio" /></a>&nbsp;
+  <a href="https://www.linkedin.com/in/alberto-reyes-ba5546238"><img src="docs/readme/button-linkedin.svg" height="42" alt="LinkedIn" /></a>
+</p>
+
+<p align="center">
+  <a href="docs/ARCHITECTURE.md">Architecture</a> ·
+  <a href="docs/VALIDATION.md">Validation</a> ·
+  <a href="evidence/data/README.md">Evidence</a>
+</p>
 
 > **Full proprietary engineering repository available to hiring teams on request, with TeachScribe's permission.** It contains the implementation, tests, validation tooling and delivery evidence described in this public case study. The source is not published here because TeachScribe owns the product code.
 
