@@ -1,0 +1,6 @@
+observation_relative_day,window_hours,compared,target_included,target_rank,target_score
+D0,2,1,true,1,0.2745
+D0,24,3,true,1,0.2745
+D0,168,14,true,1,0.2745
+D-3,2,1,false,,
+D-3,168,14,true,1,0.2745

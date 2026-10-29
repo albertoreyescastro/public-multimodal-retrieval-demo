@@ -1,0 +1,11 @@
+{
+  "count": 108,
+  "mean_ms": 440.6228148148148,
+  "median_ms": 441.067,
+  "p95_ms": 459.27785,
+  "min_ms": 402.388,
+  "max_ms": 486.647,
+  "first20_median_ms": 437.031,
+  "last20_median_ms": 444.9875,
+  "first_last_drift_percent": 1.8205802334388288
+}

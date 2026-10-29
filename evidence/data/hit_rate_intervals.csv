@@ -1,0 +1,23 @@
+set,model,metric,hits,queries,rate,wilson95_low,wilson95_high
+Hard (model selection),MobileCLIP-S0,hit1,15,20,0.7500,0.5313,0.8881
+Hard (model selection),MobileCLIP-S0,hit5,19,20,0.9500,0.7639,0.9911
+Hard (model selection),TinyCLIP 8M/16,hit1,7,20,0.3500,0.1812,0.5671
+Hard (model selection),TinyCLIP 8M/16,hit5,16,20,0.8000,0.5840,0.9193
+Hard (model selection),TinyCLIP 40M/32,hit1,13,20,0.6500,0.4329,0.8188
+Hard (model selection),TinyCLIP 40M/32,hit5,18,20,0.9000,0.6990,0.9721
+Hard (model selection),SigLIP Base,hit1,14,20,0.7000,0.4810,0.8545
+Hard (model selection),SigLIP Base,hit5,19,20,0.9500,0.7639,0.9911
+Hard (model selection),TinyCLIP 39M/16,hit1,17,20,0.8500,0.6396,0.9476
+Hard (model selection),TinyCLIP 39M/16,hit5,18,20,0.9000,0.6990,0.9721
+Hard,MobileCLIP-S0,hit1,15,20,0.7500,0.5313,0.8881
+Hard,MobileCLIP-S0,hit5,19,20,0.9500,0.7639,0.9911
+Hard,TinyCLIP 39M/16,hit1,17,20,0.8500,0.6396,0.9476
+Hard,TinyCLIP 39M/16,hit5,18,20,0.9000,0.6990,0.9721
+Expanded,MobileCLIP-S0,hit1,40,60,0.6667,0.5406,0.7727
+Expanded,MobileCLIP-S0,hit5,55,60,0.9167,0.8193,0.9639
+Expanded,TinyCLIP 39M/16,hit1,44,60,0.7333,0.6099,0.8287
+Expanded,TinyCLIP 39M/16,hit5,55,60,0.9167,0.8193,0.9639
+New Images,MobileCLIP-S0,hit1,23,30,0.7667,0.5907,0.8821
+New Images,MobileCLIP-S0,hit5,29,30,0.9667,0.8333,0.9941
+New Images,TinyCLIP 39M/16,hit1,24,30,0.8000,0.6269,0.9049
+New Images,TinyCLIP 39M/16,hit5,30,30,1.0000,0.8865,1.0000

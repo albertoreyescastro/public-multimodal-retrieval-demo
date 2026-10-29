@@ -1,0 +1,9 @@
+set,queries,candidates,metric,fp32_hits,int8_hits,int8_wilson95_low,int8_wilson95_high,only_fp32,only_int8,exact_mcnemar_p,same_top1_image
+Hard,20,16,hit1,17,14,0.4810,0.8545,3,0,0.2500,17
+Hard,20,16,hit5,18,18,0.6990,0.9721,0,0,1.0000,17
+Expanded,60,16,hit1,44,46,0.6456,0.8556,2,4,0.6875,52
+Expanded,60,16,hit5,55,54,0.7985,0.9534,1,0,1.0000,52
+New Images,30,10,hit1,24,23,0.5907,0.8821,1,0,1.0000,28
+New Images,30,10,hit5,30,30,0.8865,1.0000,0,0,1.0000,28
+All sets (descriptive sum),110,10-16,hit1,85,83,,,6,4,,97
+All sets (descriptive sum),110,10-16,hit5,103,102,,,1,0,,97

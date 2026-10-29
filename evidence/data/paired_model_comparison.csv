@@ -1,0 +1,5 @@
+set,metric,queries,both_hit,only_tinyclip39,only_mobileclip_s0,neither,exact_mcnemar_p
+Expanded,hit1,60,36,8,4,12,0.3877
+Expanded,hit5,60,54,1,1,4,1.0000
+New Images,hit1,30,23,1,0,6,1.0000
+New Images,hit5,30,29,1,0,0,1.0000
