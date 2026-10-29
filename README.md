@@ -54,7 +54,7 @@ The deployed snapshot predates a small set of **post-delivery fail-closed guards
 
 ## Results
 
-Measured on one Huawei MediaPad M3 Lite 8 (CPN-W09), Android 7 / ARM64, unless otherwise stated.
+Device-performance rows below (latency, drift, energy and memory) were measured on one Huawei MediaPad M3 Lite 8 (CPN-W09), Android 7 / ARM64. Retrieval-quality/model-selection rows are desktop or post-delivery evaluations, as stated in their Scope cells.
 
 | Result | Scope |
 | :-- | :-- |
@@ -62,9 +62,9 @@ Measured on one Huawei MediaPad M3 Lite 8 (CPN-W09), Android 7 / ARM64, unless o
 | **1.82% drift** | first 20 vs last 20 medians in that sequence |
 | **≈0.5 mWh/search** | whole-device, idle-subtracted estimate during the sustained run |
 | **74.77% smaller text encoder** | 178,520,196 → 45,042,123 bytes after INT8 quantisation |
-| **97/110 same top-1 image** | shipped INT8 vs FP32; descriptive total across three related sets |
+| **97/110 same top-1 image** | **Desktop post-delivery** INT8 vs FP32 retrieval comparison; descriptive total across three related sets |
 | **76.3 MiB idle PSS** | lazy image session; 166.6 MiB preload variant rejected |
-| **17/20 Hit@1** | TinyCLIP 39M/16 on the curated Hard set; 95% Wilson CI 64–95% |
+| **17/20 Hit@1** | **Desktop model-selection** Hard set for TinyCLIP 39M/16; 95% Wilson CI 64–95% |
 
 ![108 cached searches](docs/figures/sustained_latency.svg)
 
