@@ -1,0 +1,1 @@
+The canonical public engineering report PDF is published as a GitHub attachment and is referenced from the README. A corrected v2 PDF was regenerated during the final audit with de-identified preprocessing labels and explicit post-delivery/AI-assistance wording. Its SHA-256 is recorded in docs/VALIDATION.md.
