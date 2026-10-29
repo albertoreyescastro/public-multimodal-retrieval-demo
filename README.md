@@ -7,7 +7,7 @@
 <p align="center"><strong>Production pipeline · Shipped within TeachScribe's 50+ UK-school deployment · DfE AI Tools for Education programme</strong></p>
 
 <p align="center">
-  <a href="https://github.com/user-attachments/files/34106097/TeachScribe_On_Device_Multimodal_Retrieval_Public_Engineering_Case_Study.pdf"><img src="docs/readme/button-report.svg" height="42" alt="Engineering report" /></a>&nbsp;
+  <a href="https://github.com/user-attachments/files/34107666/TeachScribe_On_Device_Multimodal_Retrieval_Public_Engineering_Case_Study_v2.pdf"><img src="docs/readme/button-report.svg" height="42" alt="Engineering report" /></a>&nbsp;
   <a href="https://albertoreyescastro.github.io"><img src="docs/readme/button-portfolio-wide.svg" height="42" alt="Portfolio" /></a>&nbsp;
   <a href="https://www.linkedin.com/in/alberto-reyes-ba5546238"><img src="docs/readme/button-linkedin.svg" height="42" alt="LinkedIn" /></a>
 </p>
